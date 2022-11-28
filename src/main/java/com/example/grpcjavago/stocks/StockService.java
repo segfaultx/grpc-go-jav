@@ -12,7 +12,6 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -39,7 +38,6 @@ public class StockService {
         configuredStocks.forEach(this::getStockUpdates);
     }
 
-    @Async
     public void getStockUpdates(String stockName) {
         log.info("Fetching stock info for configured stock: {}", stockName);
         var request = stockUpdateRequest.newBuilder().setName(stockName).build();
