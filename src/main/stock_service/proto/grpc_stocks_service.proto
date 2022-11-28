@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+
+option go_package = "go_server/server";
+option java_multiple_files = true;
+option java_package = "com.example.grpcjavago.grpc";
+option java_outer_classname = "GrpcStockServiceProto";
+
+package grp_stock_service;
+
+service StockService {
+
+  rpc GetStockUpdates(stockUpdateRequest) returns (stream stockUpdateResponse) {}
+}
+
+message stockUpdateRequest {
+  string name = 1;
+}
+
+message stockUpdateResponse {
+  string name = 1;
+  int32 stockValue = 2;
+}
